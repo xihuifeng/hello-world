@@ -1,0 +1,44 @@
+find / -name httpd.conf  查找 apache配置文件
+
+/usr/bin/phpize  phpize的目录
+
+/usr/bin/php-config  php-config目录
+
+对于高版本PHP, 例如PHP 5.6, 重启PHP命令:
+service php-fpm restart
+
+如果提示权限不足, 请使用:
+sudo service php-fpm restart
+
+1. 启动apache
+service httpd start 
+2. 停止服务apache
+service httpd stop 
+3. 重新启动apache
+service httpd restart
+
+安装完扩展配置php.ini 和php.conf的路径
+
+卸载 yum源 ：rpm -qa | grep yum | xargs rpm -e --nodeps
+
+安装共享扩展：/ usr / lib64 / php / modules /
+安装头文件：/ usr / include / php /
+
+
+报错：
+Error: Package: php-mbstring-5.4.16-23.el7_0.3.x86_64 (updates)
+        Requires: php-common(x86-64) = 5.4.16-23.el7_0.3
+        Installed: php-common-5.4.38-1.el7.remi.x86_64 (@remi)
+        php-common(x86-64) = 5.4.38-1.el7.remi
+        Available: php-common-5.4.16-21.el7.x86_64 (base)
+        php-common(x86-64) = 5.4.16-21.el7
+        Available: php-common-5.4.16-23.el7_0.x86_64 (updates)
+        php-common(x86-64) = 5.4.16-23.el7_0
+        Available: php-common-5.4.16-23.el7_0.1.x86_64 (updates)
+        php-common(x86-64) = 5.4.16-23.el7_0.1
+        Available: php-common-5.4.16-23.el7_0.3.x86_64 (updates)
+        php-common(x86-64) = 5.4.16-23.el7_0.3
+    You could try using --skip-broken to work around the problem
+    You could try running: rpm -Va --nofiles --nodigest
+
+解决方案：先执行删除： sudo yum remove php-common ，再执行安装 sudo yum install php-mbstring
